@@ -2,7 +2,7 @@ var expect = require("chai").expect;
 var should = require('should');
 var assert = require('assert');
 
-var Interpreter = require('../src/interpreter');
+var Interpreter = require('../src/entities/interpreter');
 
 
 describe("Interpreter", function () {
