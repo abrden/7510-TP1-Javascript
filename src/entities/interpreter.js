@@ -1,10 +1,10 @@
 var DataBaseParser = require('../parsers/database_parser');
 
 var Interpreter = function () {
-    this.database;
+    var database;
 
     this.parseDB = function (arr) {
-        this.database = new DataBaseParser().parse(arr);
+        database = DataBaseParser(arr);
     }
 
     this.doQuery = function (params) {
