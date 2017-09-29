@@ -1,5 +1,5 @@
-var FactParser = require('/fact_parser');
-var RuleParser = require('/rule_parser');
+var FactParser = require('./fact_parser');
+var RuleParser = require('./rule_parser');
 var Malformation = require('../entities/malformation');
 var DataBase = require('../entities/database');
 
@@ -19,6 +19,6 @@ var DataBaseParser = function (arr) {
   }
 
   return new DataBase(facts, rules, malformations);
-}
+};
 
 module.exports = DataBaseParser;
