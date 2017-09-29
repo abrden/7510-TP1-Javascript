@@ -45,7 +45,7 @@ describe("Interpreter", function () {
     });
 
 
-    describe('Interpreter Facts', function () {
+    describe.skip('Interpreter Facts', function () {
 
         it('varon(juan) should be true', function () {
             assert(interpreter.checkQuery('varon(juan)'));
@@ -71,7 +71,7 @@ describe("Interpreter", function () {
 
     });
 
-    describe('Interpreter Rules', function () {
+    describe.skip('Interpreter Rules', function () {
 
         it('hijo(pepe, juan) should be true', function () {
             assert(interpreter.checkQuery('hijo(pepe, juan)') === true);
