@@ -1,6 +1,15 @@
 var Fact = function (predicate, args) {
-  this.predicate = predicate;
-  this.args = args;
-}
+  var predicate = predicate;
+  var args = args;
+
+  this.predicate = function () {
+    return predicate;
+  };
+
+  this.args = function () {
+    return args;
+  };
+
+};
 
 module.exports = Fact;

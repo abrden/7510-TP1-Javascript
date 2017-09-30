@@ -1,5 +1,10 @@
 var Malformation = function (sentence) {
-  this.sentence = sentence;
-}
+  var sentence = sentence;
+
+  this.sentence = function () {
+    return sentence;
+  }
+
+};
 
 module.exports = Malformation;
