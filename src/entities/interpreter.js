@@ -1,15 +1,27 @@
-var DataBaseParser = require('../parsers/database_parser');
+let FactParser = require('../parsers/fact_parser');
+let DataBaseParser = require('../parsers/database_parser');
 
-var Interpreter = function () {
-    var database;
+let Interpreter = function () {
+  var database;
 
-    this.parseDB = function (arr) {
-        database = DataBaseParser(arr);
+  this.parseDB = function (arr) {
+      database = DataBaseParser(arr);
+  };
+
+  this.checkQuery = function (query) {
+    let parseQuery = function (query) {
+      if (query.match(/[^\(]+\([^\)]+\)/))
+        return FactParser(query);
     };
 
-    this.doQuery = function (params) {
-        //TODO return this.database.query(params);
-    };
+    let parsedQuery = parseQuery(query);
+    if (parsedQuery) {
+      if (database.factQuery(parsedQuery) || database.ruleQuery(parsedQuery))
+        return true;
+      else
+        return false;
+    }
+  };
 
 };
 

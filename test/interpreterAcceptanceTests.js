@@ -7,86 +7,89 @@ var Interpreter = require('../src/entities/interpreter');
 
 describe("Interpreter", function () {
 
-    var db = [
-        "varon(juan).",
-        "varon(pepe).",
-        "varon(hector).",
-        "varon(roberto).",
-        "varon(alejandro).",
-        "mujer(maria).",
-        "mujer(cecilia).",
-        "padre(juan, pepe).",
-        "padre(juan, pepa).",
-        "padre(hector, maria).",
-        "padre(roberto, alejandro).",
-        "padre(roberto, cecilia).",
-        "hijo(X, Y) :- varon(X), padre(Y, X).",
-        "hija(X, Y) :- mujer(X), padre(Y, X)."
-    ];
+  var db = [
+    "varon(juan).",
+    "varon(pepe).",
+    "varon(hector).",
+    "varon(roberto).",
+    "varon(alejandro).",
+    "mujer(maria).",
+    "mujer(cecilia).",
+    "padre(juan, pepe).",
+    "padre(juan, pepa).",
+    "padre(hector, maria).",
+    "padre(roberto, alejandro).",
+    "padre(roberto, cecilia).",
+    "hijo(X, Y) :- varon(X), padre(Y, X).",
+    "hija(X, Y) :- mujer(X), padre(Y, X)."
+  ];
 
-    var interpreter = null;
+  var interpreter = null;
 
-    before(function () {
-        // runs before all tests in this block
+  beforeEach(function () {
+    interpreter = new Interpreter();
+    interpreter.parseDB(db);
+  });
+
+  describe('Interpreter Facts', function () {
+
+    it('varon(juan) should be true', function () {
+      assert(interpreter.checkQuery('varon(juan)'));
     });
 
-    after(function () {
-        // runs after all tests in this block
+    it('varon(maria) should be false', function () {
+      assert(interpreter.checkQuery('varon(maria)') === false);
     });
 
-    beforeEach(function () {
-        // runs before each test in this block
-        interpreter = new Interpreter();
-        interpreter.parseDB(db);
+    it('mujer(cecilia) should be true', function () {
+     assert(interpreter.checkQuery('mujer(cecilia)'));
     });
 
-    afterEach(function () {
-        // runs after each test in this block
+    it('padre(juan, pepe) should be true', function () {
+      assert(interpreter.checkQuery('padre(juan, pepe)') === true);
     });
 
-
-    describe.skip('Interpreter Facts', function () {
-
-        it('varon(juan) should be true', function () {
-            assert(interpreter.checkQuery('varon(juan)'));
-        });
-
-        it('varon(maria) should be false', function () {
-            assert(interpreter.checkQuery('varon(maria)') === false);
-        });
-
-        it('mujer(cecilia) should be true', function () {
-            assert(interpreter.checkQuery('mujer(cecilia)'));
-        });
-
-        it('padre(juan, pepe) should be true', function () {
-            assert(interpreter.checkQuery('padre(juan, pepe)') === true);
-        });
-
-        it('padre(mario, pepe) should be false', function () {
-            assert(interpreter.checkQuery('padre(mario, pepe)') === false);
-        });
-
-        // TODO: Add more tests
-
+    it('padre(mario, pepe) should be false', function () {
+      assert(interpreter.checkQuery('padre(mario, pepe)') === false);
     });
 
-    describe.skip('Interpreter Rules', function () {
+  });
 
-        it('hijo(pepe, juan) should be true', function () {
-            assert(interpreter.checkQuery('hijo(pepe, juan)') === true);
-        });
-        it('hija(maria, roberto) should be false', function () {
-            assert(interpreter.checkQuery('hija(maria, roberto)') === false);
-        });
-        it('hijo(pepe, juan) should be true', function () {
-            assert(interpreter.checkQuery('hijo(pepe, juan)'));
-        });
+  describe('Interpreter Rules', function () {
 
-        // TODO: Add more tests
-
+    it('hijo(pepe, juan) should be true', function () {
+        assert(interpreter.checkQuery('hijo(pepe, juan)') === true);
+    });
+    it('hija(maria, roberto) should be false', function () {
+        assert(interpreter.checkQuery('hija(maria, roberto)') === false);
+    });
+    it('hijo(pepe, juan) should be true', function () {
+        assert(interpreter.checkQuery('hijo(pepe, juan)'));
     });
 
+  });
+
+  describe('Interpreter malformed queries', function () {
+
+    it('hijo(pepe, juan should be undefined', function () {
+      assert(interpreter.checkQuery('hijo(pepe, juan') === undefined);
+    });
+    it('hija() should be undefined', function () {
+      assert(interpreter.checkQuery('hija()') === undefined);
+    });
+    it('hijopepe, juan) should be undefined', function () {
+      assert(interpreter.checkQuery('hijopepe, juan)') === undefined);
+    });
+
+    it('(juan) should be undefined', function () {
+      assert(interpreter.checkQuery('(juan)') === undefined);
+    });
+
+    it('varon should be undefined', function () {
+      assert(interpreter.checkQuery('varon') === undefined);
+    });
+
+  });
 
 });
 
