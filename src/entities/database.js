@@ -3,14 +3,26 @@ var DataBase = function (facts, rules, malformations) {
   var rules = rules;
   var malformations = malformations;
 
+  this.facts = function () {
+    return facts;
+  };
+
+  this.rules = function () {
+    return rules;
+  };
+
+  this.malformations = function () {
+    return malformations;
+  };
+
   this.hasMalformations = function () {
     return malformations.length == 0;
-  }
+  };
 
   this.query = function (params) {
     return false; //TODO
-  }
+  };
 
-}
+};
 
 module.exports = DataBase;
