@@ -5,12 +5,12 @@ var Interpreter = function () {
 
     this.parseDB = function (arr) {
         database = DataBaseParser(arr);
-    }
+    };
 
     this.doQuery = function (params) {
         //TODO return this.database.query(params);
-    }
+    };
 
-}
+};
 
 module.exports = Interpreter;

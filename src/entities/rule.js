@@ -4,11 +4,11 @@ var Rule = function (signature, facts) {
 
   this.signature = function () {
     return signature;
-  }
+  };
 
   this.facts = function () {
     return facts;
-  }
+  };
 
 };
 

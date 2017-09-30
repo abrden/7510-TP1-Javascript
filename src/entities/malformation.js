@@ -3,7 +3,7 @@ var Malformation = function (sentence) {
 
   this.sentence = function () {
     return sentence;
-  }
+  };
 
 };
 
