@@ -1,4 +1,6 @@
-var Fact = function (predicate, args) {
+let deepEqual = require("deep-eql");
+
+let Fact = function (predicate, args) {
   var predicate = predicate;
   var args = args;
 
@@ -9,6 +11,10 @@ var Fact = function (predicate, args) {
   this.args = function () {
     return args;
   };
+
+  this.equals = function (query) {
+    return ((predicate == query.predicate()) && (deepEqual(args, query.args())));
+  }
 
 };
 
