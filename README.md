@@ -17,31 +17,4 @@ $ npm install
 $ npm test
 ```
 
-## Usage
-Clone the project
-```
-$ git clone https://github.com/abrden/7510-TP1-Javascript.git
-$ cd 7510-TP1-Javascript/
-```
-Write your database a file (there's some examples [here](https://github.com/abrden/7510-TP1-Javascript/tree/master/test/files)) and run the interpreter with it's path.
-For example:
-```
-$ .. test/files/number_database.txt
-```
-Make any query
-```
-add(2,2,1)
-(SLI) false
-```
-Malformed queries return nil
-```
-Hi!
-(SLI)
-```
-Press 'q' to exit.
-```
-q
-(SLI) Exiting
-```
-
 ## License
